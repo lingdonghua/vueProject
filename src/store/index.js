@@ -5,6 +5,7 @@ import home from '@/store/home'
 import search from '@/store/search/index'
 import detail from '@/store/detail'
 import shopCart from '@/store/shopCart'
+import user from '@/store/user'
 //注册插件
 Vue.use(vuex)
 
@@ -13,6 +14,7 @@ export default new vuex.Store({
     home,
     search,
     detail,
-    shopCart
+    shopCart,
+    user
   }
 })

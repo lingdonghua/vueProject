@@ -31,4 +31,14 @@ export const reqShopCartListApi = () => axios.get('/cart/cartList')
 //购物车修改选中状态
 export const reqUpdateStatus = (skuId, isChecked) => axios({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: 'get' })
 //购物车删除单个商品接口
-export const reqDeleteOneGoods=(skuId)=>axios({url:`cart/deleteCart/${skuId}`,method:'delete'})
+export const reqDeleteOneGoods = (skuId) => axios({ url: `cart/deleteCart/${skuId}`, method: 'delete' })
+//获取验证码接口
+export const reqCodeApi=(phone)=>axios.get(`/user/passport/sendCode/${phone}`)
+//注册接口
+export const reqRegisterApi = (params) => axios({ url: '/user/passport/register', method: 'post', data: params })
+//登录接口
+export const reqLoginApi = (params) => axios({ url: '/user/passport/login', method: 'post', data: params })
+//自动登录接口
+export const reqAutoLogin = () => axios.get('/user/passport/auth/getUserInfo')
+//退出登录接口
+export const reqLoginOut=()=>axios.get('/user/passport/logout')

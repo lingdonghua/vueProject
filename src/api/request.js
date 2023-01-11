@@ -14,8 +14,10 @@ const request = axios.create({
 //设置请求拦截器
 request.interceptors.request.use(function (config) {
   nprogress.start()
-  config.headers.userTempId=uuid()
-  console.log(config);
+  config.headers.userTempId = uuid()
+  if (localStorage.getItem('token')) {
+    config.headers.token=localStorage.getItem('token')
+  }
   return config
 }, function (error) {
   return Promise.reject(error)
