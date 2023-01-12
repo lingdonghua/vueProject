@@ -5,7 +5,26 @@ import AddCartSuccess from '@/pages/AddCartSuccess/index'
 import ShopCart from '@/pages/ShopCart'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
-export default [{
+import Trade from '@/pages/Trade'
+import Pay from '@/pages/Pay'
+export default [
+  //支付页面
+  {
+    path: '/pay',
+    component: Pay,
+    meta: {
+      footerShow: true
+    }
+  },
+  //结算页面组件
+  {
+    path: '/trade',
+    component: Trade,
+    meta: {
+      footerShow: true
+    }
+  },
+  {
     path: '/',
     redirect: '/home',
     meta: {
@@ -14,7 +33,7 @@ export default [{
   },
   {
     path: '/home',
-    name:'home',
+    name: 'home',
     component: Home,
     meta: {
       footerShow: true
@@ -73,7 +92,15 @@ export default [{
     }
   },
   //登录路由
-  {path:'/login',name:'name',component:Login},
+  {
+    path: '/login',
+    name: 'name',
+    component: Login
+  },
   //注册路由
-  {path:'/register',name:'register',component:Register}
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
+  }
 ]

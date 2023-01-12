@@ -33,7 +33,7 @@ const actions = {
       localStorage.setItem('token', result.data.token)
       return 'ok'
     } else {
-      return Promise.reject(new Error('登录失败'))
+      return Promise.reject(new Error('登录失败，手机号或密码错误！'))
     }
   },
   //自动登录
@@ -42,10 +42,9 @@ const actions = {
     if (result.code === 200) {
       commit('AUTOLOGIN', result.data)
       return 'ok'
+    }else {
+      return Promise.reject(new Error('自动登录失败！'))
     }
-    // } else {
-    //   return Promise.reject(new Error('自动登录失败！'))
-    // }
   },
   //退出登录
   async reqLoginOut({commit}) {

@@ -33,8 +33,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('home/getFloor')
-    //获取用户信息
-    this.$store.dispatch('user/autoLogin')
   }
 }
 </script>

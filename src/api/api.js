@@ -41,4 +41,12 @@ export const reqLoginApi = (params) => axios({ url: '/user/passport/login', meth
 //自动登录接口
 export const reqAutoLogin = () => axios.get('/user/passport/auth/getUserInfo')
 //退出登录接口
-export const reqLoginOut=()=>axios.get('/user/passport/logout')
+export const reqLoginOut = () => axios.get('/user/passport/logout')
+//获取用户地址信息接口
+export const reqAddressListApi = () => axios('/user/userAddress/auth/findUserAddressList')
+//获取订单核对页面的信息
+export const reqTradeInfo = () => axios('/order/auth/trade')
+//提交订单
+export const reqCommitOrder = (tradeNo, data) => axios({ url: `/order/auth/submitOrder?tradeNo=${tradeNo}`, data, method: 'post' })
+// 获取订单支付信息
+export const reqPayInfo=(orderId)=>axios.get(`/payment/weixin/createNative/${orderId}`)

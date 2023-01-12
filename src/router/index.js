@@ -1,6 +1,7 @@
 import vue from 'vue'
 import vueRouter from 'vue-router'
 import routes from '@/router/routes'
+import store from '@/store'
 vue.use(vueRouter)
 
 
@@ -36,6 +37,47 @@ const router = new vueRouter({
     return {
       y: 0
     }
-  }
+  },
+})
+//路由守卫
+router.beforeEach(async (to, from, next) => {  
+    //用户是否登录了
+  if (localStorage.getItem('token')) {
+    if (to.path === '/login') {
+      //登陆了不等再去登录页面
+      //已经登录，跳回home
+      next('/home')
+    } else {
+    //不去登录页面，去其他页面
+    //判断仓库是否有用户信息，没有就请求发
+      if (!store.state.user.autoLoginUserInfo.nickName) {
+      try {
+      //获取用户信息
+        await store.dispatch('user/autoLogin')
+        next()
+      } catch (error) {
+        //token可能过期，清楚token，重新登录
+        alert('token过期，请重新登录')
+        localStorage.removeItem('token')
+        next('/login')
+      }
+      } else {
+        //仓库有用户信息，直接放行
+        next()
+    }
+    }
+  } else {
+  //  === '/shopcart' || to.path === '/tarde' || to.path === '/pay'
+    //用户未登录
+    //定义需要登录才能进入的路由
+    var str='/shopcart /tarde /pay'
+    if (str.indexOf(to.path)!==-1) {
+      //未登录不能看购物车
+      alert('未登录，请先登录！')
+      next('/login')
+    }
+      next()
+    }
+ 
 })
 export default router
